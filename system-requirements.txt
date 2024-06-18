@@ -1,0 +1,15 @@
+## Requisitos del Sistema
+### Funcionales
+1. **Gestión de usuarios**: Registro, inicio de sesión, recuperación de contraseñas.
+2. **Gestión de cursos**: Creación, modificación y eliminación de cursos.
+3. **Asignación de profesores**: Asignación de profesores a cursos específicos.
+4. **Seguimiento del progreso**: Evaluación continua de los estudiantes.
+5. **Procesamiento de pagos**: Inscripción y facturación de cursos.
+
+### No Funcionales
+1. **Rendimiento**: Respuesta en menos de 2 segundos para el 95% de las interacciones.
+2. **Disponibilidad**: 99.5% del tiempo operativo.
+3. **Seguridad**: Uso de HTTPS, autenticación robusta y cifrado de datos.
+4. **Usabilidad**: Intuitivo y fácil de usar, con cumplimiento de WCAG 2.1 nivel AA.
+5. **Escalabilidad**: Capaz de manejar 1000 usuarios simultáneos.
+6. **Compatibilidad**: Compatible con los principales navegadores y dispositivos.
