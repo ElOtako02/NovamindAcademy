@@ -1,6 +1,6 @@
 # NOVAMIND ACADEMY
 
-![logo](./NovamindAcademyEnviroment/NovamindAcademyProyect/core/static/core/photos/logo.png)
+![logo](./Novamind_academy_logo.jpg)
 
 <br />
 
