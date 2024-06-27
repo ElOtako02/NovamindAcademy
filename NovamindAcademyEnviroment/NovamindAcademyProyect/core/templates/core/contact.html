@@ -1,0 +1,22 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<main class="bg-dark text-white p-3">
+    <h1 class="text-center m-3">Contacto</h1>
+    <div class="d-flex justify-content-center">
+        <form method="post">
+            <input class="mb-4 form-control" placeholder="Nombre" size="40">
+            <br>
+            <input class="mb-4 form-control" placeholder="Apellidos" size="40">
+            <br>
+            <input class="mb-4 form-control" type="email" placeholder="Correo" size="40">
+            <br>
+            <input class="mb-4 form-control" placeholder="Dirección" size="40">
+            <br>
+            <textarea class="mb-4 form-control" cols="45" rows="10" name="message" placeholder="Mensaje"></textarea>
+            <br>
+            <button id="btn-enviar" class="btn btn-warning mb-2" type="submit">Enviar</button>
+        </form>
+    </div>
+</main>
+{% endblock %}

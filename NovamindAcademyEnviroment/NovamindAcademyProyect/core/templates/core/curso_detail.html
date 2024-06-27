@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container bg-dark bg-gradient text-center p-5 mb-5 text-white">
+    <h1>{{ curso.nombre }}</h1>
+    <p>{{ curso.descripcion }}</p>
+    <article class="d-flex justify-content-center mt-4">
+        <img src="{{ curso.imagen_curso.url }}" width="600" alt="Imagen del curso">        
+    </article>
+    <a href="{% url 'cursos' %}" class="btn btn-danger mt-5">Atrás</a>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+    <main class="container">
+        <h1 class="text-white text-center mb-3">Precios de los Cursos</h1>
+        <p class="text-white text-center mb-4">Escoge el curso que más te guste</p>
+        <div class="row m-5">
+            {% for precio in precio_list %}
+                <div class="d-flex align-items-center col-3">
+                    <div class="card me-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5>{{ precio.curso }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">Precio: {{ precio.cantidad }} €</h3>
+                            <p class="card-text">{{ precio.descripcion }}</p>
+                            <a href="{% url 'crear_alumno' %}" class="btn btn-primary">Seleccionar</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="text-center m-4">
+                <a href="{% url 'crear_precio' %}" class="btn btn-warning m-3">Crear Precio</a>                
+            </div>
+        </div>        
+    </main>
+{% endblock %}

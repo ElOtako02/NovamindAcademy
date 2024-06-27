@@ -1,0 +1,62 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 class="text-white mb-5">{{ curso.nombre }}</h1>
+    <h3 class="text-white">Alumnos Inscritos</h3>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+          {% for alumno in alumnos %}
+            <div class="card bg-primary-subtle m-5 " style="max-width: 1200px;">
+                <div class="row g-0">
+                  <div class="col-4 text-center my-auto">
+                    <img src="{{ alumno.foto.url }}" width="200" class="img-fluid img-animated rounded-start" alt="imagen del alumno {{ alumno }}">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                        <h3>{{ alumno.nombre }}  {{alumno.apellidos }}</h3>
+                        <p class="card-text mt-3">
+                            <strong>Fecha Nacimiento: </strong> <span>{{ alumno.fecha_nacimiento }}</span>
+                        </p>
+                        <hr class="my-2">
+                        <p class="card-text">
+                            <strong>Teléfono:</strong> <span>{{ alumno.telefono }}</span>
+                        </p>
+                        <hr class="my-2">
+                        <p class="card-text">
+                            <strong>Email:</strong> <span>{{ alumno.email }}</span>
+                        </p>
+                        <hr class="my-2">
+                        <p class="card-text">
+                            <strong>Cursos en los que está inscrito:</strong>
+                            <ul>
+                            {% for curso in alumno.cursos.all %}
+                              <li>{{ curso }}</li>
+                            {% endfor %}
+                            </ul>
+                        </p>
+                        {% if request.user.is_staff %}
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <a href="{% url 'modificar_alumno' alumno.id_alumno %}" class="btn btn-warning">Modificar</a>
+                            </small>
+                            <small class="text-muted">
+                              <a href="{% url 'borrar_alumno' alumno.id_alumno %}" class="btn btn-danger ms-2">Borrar</a>
+                            </small>
+                        </p>
+                        {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          <div class="d-flex justify-content-center align-items-center gap-3 mb-5">
+            <a href="{% url 'exportar-alumnos' %}" class="btn btn-success">Exportar Alumnos a CSV</a>
+            <a href="{% url 'cursos' %}" class="btn btn-danger">Atrás</a>
+          </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div> 
+{% endblock %}

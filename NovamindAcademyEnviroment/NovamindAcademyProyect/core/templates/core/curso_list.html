@@ -1,0 +1,58 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 class="text-white">Cursos Disponibles</h1>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <br>
+            <br>
+            {% for curso in curso_list %}
+            <div class="card bg-primary-subtle mb-5 " style="max-width: 1200px;">
+                <div class="row g-0">
+                  <div class="col-4 text-center my-auto">
+                    <img src="{{ curso.imagen_curso.url }}" width="300" class="img-fluid img-animated rounded-start" alt="imagen de {{ curso }}">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                        <h3>
+                            <a class="nav-link" href="{% url 'detalles_curso' curso.id_curso %}">{{ curso }}</a>
+                        </h3>
+                        <p class="card-text p-2">
+                            <strong>Profesor: </strong><a href="{% url 'detalles_profesor' curso.profesor.id_profesor %}">{{ curso.profesor }} {{ curso.profesor.apellidos }}</a>
+                        </p>
+                        <hr class="my-2">
+                        <p class="card-text p-2">
+                            <strong>Alumnos Inscritos:</strong>
+                            <span>{{ curso.numero_alumnos_inscritos }}</span>
+                            {% if request.user.is_staff %}
+                              <a href="{% url 'alumnos_por_curso' curso.id_curso %}" class="ms-2">Detalles</a>
+                            {% endif %}
+                        </p>
+                        {% if request.user.is_staff %}
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <a href="{% url 'modificar_curso' curso.id_curso %}" class="btn btn-warning">Modificar</a>
+                            </small>
+                            <small class="text-muted">
+                              <a href="{% url 'borrar_curso' curso.id_curso %}" class="btn btn-danger ms-2">Borrar</a>
+                            </small>
+                        </p>
+                        {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          <div class="text-center mb-4">
+            <a href="{% url 'crear_curso' %}" class="btn btn-warning">Crear Curso</a>            
+            <a href="{% url 'exportar-cursos' %}" class="btn btn-success ms-4">Exportar Cursos a CSV</a>
+          </div>
+        </div>
+        <div class="col-1">
+          
+        </div>
+    </div>
+</div> 
+{% endblock %}

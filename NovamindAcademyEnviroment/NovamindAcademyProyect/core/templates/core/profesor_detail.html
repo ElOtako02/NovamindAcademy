@@ -1,0 +1,17 @@
+{% extends "core/base.html" %}
+{% block content %}
+<div class="container mt-5 text-white">
+    <div class="card bg-dark bg-gradient p-4 shadow-lg rounded mb-5">
+        <div class="text-center text-white mb-4">
+            <h1>{{ profesor.nombre }} {{ profesor.apellidos }}</h1>
+        </div>
+        <div class="d-flex justify-content-center mb-4">
+            <img class="img-fluid rounded-circle border border-3 border-light" width="250" src="{{ profesor.foto.url }}" alt="Imagen del profesor">
+        </div>
+        <div class="card-body text-center">
+            <p class="card-text text-center text-white">{{ profesor.descripcion }}</p>
+            <a href="{% url 'profesores' %}" class="btn btn-danger mt-3">Atrás</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

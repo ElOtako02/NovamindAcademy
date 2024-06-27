@@ -1,0 +1,58 @@
+  {% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1 class="text-white">Profesores</h1>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <br>
+            <br>
+            {% for profesor in profesor_list %}
+            <div class="card bg-primary-subtle mb-5" style="max-width: 1200px;">
+                <div class="row g-0">
+                  <div class="col-4 text-center my-auto">
+                    <img src="{{ profesor.foto.url }}" width="300" class="img-fluid rounded-start" alt="imagen del profesor {{ profesor.nombre }} {{ profesor.apellidos }}">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ profesor }} {{ profesor.apellidos }}</h3>
+                        <p class="card-text"><a href="{% url 'detalles_profesor' profesor.id_profesor %}">Detalles</a></p>
+                        <p class="card-text">
+                            <strong>Cursos: </strong>
+                            <ul>
+                                {% for curso in profesor.cursos.all %}
+                                    <li>{{ curso.nombre }} (<a href="{% url 'detalles_curso' curso.id_curso %}">Detalles del curso</a>)</li>
+                                    <!-- Si es el último elemento de la lista, no aparece el hr -->
+                                    {% if not forloop.last %}
+                                    <hr class="my-2">
+                                    {% endif %}
+                                {% empty %}
+                                    <li>No tiene cursos asignados</li>
+                                {% endfor %}
+                            </ul>
+                        </p>
+                        {% if request.user.is_staff %}
+                        <p class="card-text mt-4">
+                            <small class="text-muted">
+                                <a href="{% url 'modificar_profesor' profesor.id_profesor %}" class="btn btn-warning me-2">Modificar</a>
+                            </small>
+                            <small class="text-muted">
+                              <a href="{% url 'borrar_profesor' profesor.id_profesor %}" class="btn btn-danger">Borrar</a>
+                            </small>
+                        </p>
+                        {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+            <div class="text-center mb-4">
+              <a href="{% url 'crear_profesor' %}" class="btn btn-warning">Crear Profesor</a>
+              <a href="{% url 'exportar-profesores' %}" class="btn btn-success ms-4" role="button">Generar fichero CSV</a>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+</div> 
+{% endblock %}
